@@ -11,27 +11,36 @@
 
 void insertion_sort_list(listint_t **list)
 {
-	int i;
-	int j;
-	int key;
+	if (list == NULL)
+		return;
 
-	while (j >= 0 && arr[j] > key)
+	listint_t *current = *list;
+	listint_t *key = (*list)->next;
+
+	while (key != NULL)
 	{
-		arr[j + 1] = arr[j];
-		j = j - 1;
+		current = key;
+		key = key->next;
+
+		while (current->prev && current->n < current->prev->n)
+		{
+			listint_t *temp = current->prev;
+
+			temp->next = current->next;
+			if (current->next != 0)
+				current->next->prev = temp;
+
+			current->prev = temp->prev;
+			current->next = temp;
+
+			if (temp->prev != 0)
+				temp->prev->next = current;
+			else
+				*list = current;
+
+			temp->prev = current;
+
+			print_list(*list);
+		}
 	}
-	arr[j + 1] = key;
 }
-
-{
-	listint_t *current = 0;
-
-	
-	for (i = 0, i < list
-
-/**
- * create a key[next] before swap - points to the next int after swaps are done
- * compare j & (j + 1)
- * if (j + 1) < j, SWAP
- * if (j + 1) < (j - 1) SWAP, need to recurse this until arr[0] OR (j + 1) > arr[_]
- * key[next] becomes j and this outer loop starts over
