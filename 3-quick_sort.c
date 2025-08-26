@@ -21,7 +21,7 @@ void quick_sort(int *array, size_t size)
  `* @array: array to be sorted
  * @low: starting index
  * @high: ending index
- * @size: size of the array (for printing)
+ * @size: size of the array
  *
  * Return: void
  */
@@ -46,6 +46,7 @@ void quick_sort_rec(int *array, int low, int high, size_t size)
  * @arr: array
  * @low: starting index
  * @high: ending index
+ * @size: size of the array
  *
  * Return: partition index
  */
