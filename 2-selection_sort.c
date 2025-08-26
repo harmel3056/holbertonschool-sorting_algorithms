@@ -16,21 +16,24 @@ void selection_sort(int *array, size_t size)
 	int min_key;
 	int temp;
 
-	min_key = i;
-
 	for (i = 0; i < size - 1; i++)
 	{
+		min_key = i;
+
 		for (j = i + 1; j < size; j++)
 		{
 			if (array[min_key] > array[j])
 				min_key = j;
 		}
 
-	temp = array[i];
-	array[i] = array[min_key];
-	array[min_key] = temp;
+		if (min_key != i)
+		{
+			temp = array[i];
+			array[i] = array[min_key];
+			array[min_key] = temp;
+		}
 
-	print_array(array, size);
+		print_array(array, size);
 	}
 }
 
