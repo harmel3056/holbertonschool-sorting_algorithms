@@ -18,7 +18,7 @@ typedef struct listint_s
 	struct listint_s *next;
 } listint_t;
 
-int partition(int arr[], int low, int high);
+int partition(int arr[], int low, int high, size_t size);
 void swap(int *a, int *b);
 void bubble_sort(int *array, size_t size);
 void insertion_sort_list(listint_t **list);

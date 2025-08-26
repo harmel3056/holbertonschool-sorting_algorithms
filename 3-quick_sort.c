@@ -32,10 +32,7 @@ void quick_sort_rec(int *array, int low, int high, size_t size)
 
 	if (low < high)
 	{
-		pi = partition(array, low, high);
-
-		print_array(array, size); /* only if project requires printing */
-
+		pi = partition(array, low, high, size);
 		quick_sort_rec(array, low, pi - 1, size);
 		quick_sort_rec(array, pi + 1, high, size);
 	}
@@ -53,24 +50,31 @@ void quick_sort_rec(int *array, int low, int high, size_t size)
  * Return: partition index
  */
 
-int partition(int arr[], int low, int high)
+int partition(int arr[], int low, int high, size_t size)
 {
-	int pivot;
-	int i;
-	int j;
+	int pivot, i, j;
 
 	pivot = arr[high];
-	i = (low - 1);
+	i = low - 1;
 
 	for (j = low; j <= high - 1; j++)
 	{
 		if (arr[j] <= pivot)
 		{
 			i++;
-			swap(&arr[i], &arr[j]);
+			if (i != j)
+			{
+				swap(&arr[i], &arr[j]);
+				print_array(arr, size);
+			}
 		}
 	}
-	swap(&arr[i + 1], &arr[high]);
+	if (i + 1 != high)
+	{
+		swap(&arr[i + 1], &arr[high]);
+		print_array(arr, size);
+	}
+
 	return (i + 1);
 }
 
